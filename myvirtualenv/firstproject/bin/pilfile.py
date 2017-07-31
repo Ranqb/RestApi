@@ -1,4 +1,4 @@
-#!/Users/Andrey/Desktop/python/myvirtualenv/firstproject/bin/python3
+#!/Users/user/Desktop/python/myvirtualenv/firstproject/bin/python3
 #
 # The Python Imaging Library.
 # $Id$

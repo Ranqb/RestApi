@@ -1,4 +1,4 @@
-#!/Users/Andrey/Desktop/python/myvirtualenv/firstproject/bin/python3
+#!/Users/user/Desktop/python/myvirtualenv/firstproject/bin/python3
 """PILdriver, an image-processing calculator using PIL.
 
 An instance of class PILDriver is essentially a software stack machine
