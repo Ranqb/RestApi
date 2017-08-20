@@ -15,15 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from firstapp import views
+from validformapp import views
 
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home, name='home'),
-    url(r'^(?P<pizza_id>\d+)/$', views.pizza_detail, name='pizza-detail'),
-
+    # url(r'^$', views.home, name='home'),
+    # url(r'^(?P<pizza_id>\d+)/$', views.pizza_detail, name='pizza-detail'),
+    url(r'formpage/', views.form_page, name='form-page'),
     # url(r'^test_app/', include ('testurlapp.test_urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,6 +3,9 @@ from firstapp.models import Pizza
 
 from firstapp.forms import OrderFrom
 
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
+
 # Create your views here.
 def home(request):
     pizzas = Pizza.objects.all()
@@ -10,10 +13,17 @@ def home(request):
 
 def pizza_detail (request, pizza_id):
     pizza = get_object_or_404(Pizza, id=pizza_id)
-    form = OrderFrom(initial={
+    form = OrderFrom(request.POST or None, initial={
         'pizza':pizza
     })
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('{}?sent=True'.format(reverse('pizza-detail',kwargs={'pizza_id':pizza_id})))
+
     return render(request, 'pizza_detail.html', {
         'pizza' : pizza,
-        'form' : form
+        'form' : form,
+        'sent' : request.GET.get('sent', False)
     })
