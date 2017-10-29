@@ -37,4 +37,9 @@ urlpatterns = [
     url(r'^pizzashop/$', views.pizzashop_home, name='pizzashop-home'),
 
     url(r'^pizzashop/sign-up', views.pizzashop_sign_up, name='pizzashop-sign-up'),
+
+    url(r'^pizzashop/account/$', views.pizzashop_account, name='pizzashop-account'),
+    url(r'^pizzashop/pizza/$', views.pizzashop_pizza, name='pizzashop-pizza'),
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
