@@ -30,4 +30,8 @@ urlpatterns = [
     url(r'^pizzashop/sign-out', auth_views.logout,
         {'next_page':'/'},
         name='pizzashop-sign-out'),
+
+    url(r'^pizzashop/$', views.pizzashop_home, name='pizzashop-home'),
+
+    url(r'^pizzashop/sign-up', views.pizzashop_sign_up, name='pizzashop-sign-up'),
 ]
