@@ -56,6 +56,19 @@ def pizzashop_add_pizza(request):
         'form':form
     })
 
+@login_required(login_url='/pizzashop/sign-in/')
+def pizzashop_edit_pizza(request, pizza_id):
+    form = PizzaForm(instance = Pizza.objects.get(id = pizza_id))
+    if request.method == "POST":
+        form = PizzaForm(request.POST, request.FILES, instance = Pizza.objects.get(id = pizza_id))
+        if form.is_valid():
+            pizza = form.save()
+            return redirect(pizzashop_pizza)
+
+    return render(request, 'pizzashop/edit_pizza.html', {
+        'form':form
+    })
+
 def pizzashop_sign_up(request):
     user_form = UserForm()
     pizzashop_form = PizzaShopForm()

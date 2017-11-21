@@ -40,7 +40,9 @@ urlpatterns = [
 
     url(r'^pizzashop/account/$', views.pizzashop_account, name='pizzashop-account'),
     url(r'^pizzashop/pizza/$', views.pizzashop_pizza, name='pizzashop-pizza'),
-    url(r'^pizzashop/pizza/add/$', views.pizzashop_add_pizza, name ='pizzashop-add-pizza')
+    url(r'^pizzashop/pizza/add/$', views.pizzashop_add_pizza, name ='pizzashop-add-pizza'),
+    url(r'^pizzashop/pizza/edit/(?P<pizza_id>\d+)/$', views.pizzashop_edit_pizza, name ='pizzashop-edit-pizza')
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
