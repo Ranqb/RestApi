@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 
 from django.contrib.auth import authenticate, login
 
+from pizzashopapp.models import Pizza
+
 # Create your views here.
 def home(request):
     return redirect(pizzashop_home)
@@ -34,7 +36,10 @@ def pizzashop_account(request):
 
 @login_required(login_url='/pizzashop/sign-in/')
 def pizzashop_pizza(request):
-    return render(request, 'pizzashop/pizza.html', {})
+    pizzas = Pizza.objects.filter(pizzashop = request.user.pizzashop).order_by("-id")
+    return render(request, 'pizzashop/pizza.html', {
+        'pizzas':pizzas,
+    })
 
 @login_required(login_url='/pizzashop/sign-in/')
 def pizzashop_add_pizza(request):
