@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import os
 
 # Create your models here.
 class PizzaShop(models.Model):
@@ -12,11 +13,15 @@ class PizzaShop(models.Model):
     def __str__(self):
         return self.name
 
+def get_upload_path(instance, filename):
+    return os.path.join("pizza_images",
+      "user_%s" % instance.pizzashop.owner.username, filename)
+
 class Pizza(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
     name = models.CharField(max_length=30)
     short_description = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='pizza_images', blank=False)
+    image = models.ImageField(upload_to=get_upload_path, blank=False)
     price = models.IntegerField(default=0)
 
     def __str__(self):

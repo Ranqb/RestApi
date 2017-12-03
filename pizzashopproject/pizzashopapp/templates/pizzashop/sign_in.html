@@ -3,7 +3,7 @@
 
 {% block title %}Войти{% endblock %}
 
-{% block heading %}пиццерия - страница входа!{% endblock %}
+{% block heading %}войдите в вашу учетную запись{% endblock %}
 
 {% block content %}
 <form method="POST">
@@ -11,5 +11,5 @@
   {% bootstrap_form form %}
   <button type="submit" class="btn btn-red pull-right" >Войти</button>
 </form>
-<a href="{% url 'pizzashop-sign-up' %}">Зарегистрировать Пиццерию</a>
+<a href="{% url 'pizzashop-sign-up' %}">Зарегистрировать пользователя</a>
 {% endblock %}
