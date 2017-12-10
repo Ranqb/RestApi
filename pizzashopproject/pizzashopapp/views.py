@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from pizzashopapp.forms import UserForm, PizzaShopForm, UserFormForEdit, PizzaForm, SushiForm
+from pizzashopapp.forms import UserForm, PizzaShopForm, UserFormForEdit, PizzaForm, SushiForm, NewsForm
 from django.contrib.auth.models import User
 
 from django.contrib.auth import authenticate, login
 
-from pizzashopapp.models import Pizza, Sushi
+from pizzashopapp.models import Pizza, Sushi, News
 
 # Create your views here.
 def home(request):
@@ -60,6 +60,8 @@ def pizzashop_sign_up(request):
         'pizzashop_form':pizzashop_form,
     })
 
+#pizza
+
 @login_required(login_url='/pizzashop/sign-in/')
 def pizzashop_pizza(request):
     pizzas = Pizza.objects.filter(pizzashop = request.user.pizzashop).order_by("-id")
@@ -95,7 +97,7 @@ def pizzashop_edit_pizza(request, pizza_id):
         'form':form
     })
 
-
+#sushi
 @login_required(login_url='/pizzashop/sign-in/')
 def pizzashop_sushi(request):
     sushis = Sushi.objects.filter(pizzashop = request.user.pizzashop).order_by("-id")
@@ -104,7 +106,7 @@ def pizzashop_sushi(request):
     })
 
 @login_required(login_url='/pizzashop/sign-in/')
-def pizzashop_add_pizza(request):
+def pizzashop_add_sushi(request):
     form = SushiForm()
     if request.method == "POST":
         form = SushiForm(request.POST, request.FILES)
@@ -119,13 +121,49 @@ def pizzashop_add_pizza(request):
     })
 
 @login_required(login_url='/pizzashop/sign-in/')
-def pizzashop_edit_pizza(request, sushi_id):
+def pizzashop_edit_sushi(request, sushi_id):
     form = SushiForm(instance = Sushi.objects.get(id = sushi_id))
     if request.method == "POST":
         form = SushiForm(request.POST, request.FILES, instance = Sushi.objects.get(id = sushi_id))
         if form.is_valid():
             sushi = form.save()
             return redirect(pizzashop_sushi)
+
+    return render(request, 'pizzashop/edit_pizza.html', {
+        'form':form
+    })
+
+#news
+@login_required(login_url='/pizzashop/sign-in/')
+def pizzashop_news(request):
+    newses = News.objects.filter(pizzashop = request.user.pizzashop).order_by("-id")
+    return render(request, 'pizzashop/news.html', {
+        'newses':newses,
+    })
+
+@login_required(login_url='/pizzashop/sign-in/')
+def pizzashop_add_news(request):
+    form = NewsForm()
+    if request.method == "POST":
+        form = NewsForm(request.POST, request.FILES)
+        if form.is_valid():
+            news = form.save(commit=False)
+            news.pizzashop = request.user.pizzashop
+            news.save()
+            return redirect(pizzashop_news)
+
+    return render(request, 'pizzashop/add_pizza.html', {
+        'form':form
+    })
+
+@login_required(login_url='/pizzashop/sign-in/')
+def pizzashop_edit_news(request, news_id):
+    form = NewsForm(instance = News.objects.get(id = news_id))
+    if request.method == "POST":
+        form = NewsForm(request.POST, request.FILES, instance = News.objects.get(id = news_id))
+        if form.is_valid():
+            news = form.save()
+            return redirect(pizzashop_news)
 
     return render(request, 'pizzashop/edit_pizza.html', {
         'form':form

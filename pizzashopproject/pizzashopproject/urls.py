@@ -45,8 +45,12 @@ urlpatterns = [
     url(r'^pizzashop/pizza/edit/(?P<pizza_id>\d+)/$', views.pizzashop_edit_pizza, name ='pizzashop-edit-pizza'),
 
     url(r'^pizzashop/sushi/$', views.pizzashop_sushi, name='pizzashop-sushi'),
-    url(r'^pizzashop/sushi/add/$', views.pizzashop_add_pizza, name ='pizzashop-add-pizza'),
-    url(r'^pizzashop/sushi/edit/(?P<sushi_id>\d+)/$', views.pizzashop_edit_pizza, name ='pizzashop-edit-pizza'),
+    url(r'^pizzashop/sushi/add/$', views.pizzashop_add_sushi, name ='pizzashop-add-sushi'),
+    url(r'^pizzashop/sushi/edit/(?P<sushi_id>\d+)/$', views.pizzashop_edit_sushi, name ='pizzashop-edit-sushi'),
+
+    url(r'^pizzashop/news/$', views.pizzashop_news, name='pizzashop-news'),
+    url(r'^pizzashop/news/add/$', views.pizzashop_add_news, name ='pizzashop-add-news'),
+    url(r'^pizzashop/news/edit/(?P<news_id>\d+)/$', views.pizzashop_edit_news, name ='pizzashop-edit-news'),
 
 
 

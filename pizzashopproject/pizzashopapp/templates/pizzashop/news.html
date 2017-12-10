@@ -1,0 +1,38 @@
+{% extends 'pizzashop/base.html' %}
+
+{% block page %}
+<div class="panel">
+  <div class="panel-heading bg-ruby">
+    <h4 class="panel-title text-center text-white">
+      Новости
+    </h4>
+  </div>
+  <div class="panel-body">
+    <div class="text-right">
+      <a href="{% url 'pizzashop-add-news' %}"class="btn btn-red">Добавить</a>
+      <br/>
+      <br/>
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+      <thead>
+        <tr class="bg-red text-white">
+          <th>ID</th>
+          <th>Название</th>
+          <th>Короткое описание</th>
+          <th class="text-center">Изображение</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for news in newses %}
+          <tr>
+            <td scope="row">{{ news.id }}</td>
+            <td><a href="{% url 'pizzashop-edit-news' news.id %}">{{ news.name }}</a></td>
+            <td>{{ news.short_description }}</td>
+            <td class="text-center"><img class="img-rounded" src="{{ MEDIA_URL }}{{ news.image }}" width = "250"></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
