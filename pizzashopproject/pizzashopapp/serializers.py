@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from pizzashopapp.models import PizzaShop
+from pizzashopapp.models import PizzaShop, Pizza, Sushi, News
 
 class PizzaShopSerializer(serializers.ModelSerializer):
     logo = serializers.SerializerMethodField()
@@ -11,3 +11,36 @@ class PizzaShopSerializer(serializers.ModelSerializer):
     class Meta:
         model = PizzaShop
         fields = ('id', 'name', 'phone', 'address', 'logo')
+
+class NewsSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, news):
+        request = self.context.get('request')
+        image_url = news.image.url
+        return request.build_absolute_uri(image_url)
+    class Meta:
+        model = News
+        fields = ('id', 'name', 'short_description', 'image') 
+
+class PizzaSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, pizza):
+        request = self.context.get('request')
+        image_url = pizza.image.url
+        return request.build_absolute_uri(image_url)
+    class Meta:
+        model = Pizza
+        fields = ('id', 'name', 'short_description', 'image', 'price')
+
+class SushiSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, sushi):
+        request = self.context.get('request')
+        image_url = sushi.image.url
+        return request.build_absolute_uri(image_url)
+    class Meta:
+        model = Sushi
+        fields = ('id', 'name', 'short_description', 'image', 'price')

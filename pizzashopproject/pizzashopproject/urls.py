@@ -52,6 +52,13 @@ urlpatterns = [
     url(r'^pizzashop/news/add/$', views.pizzashop_add_news, name ='pizzashop-add-news'),
     url(r'^pizzashop/news/edit/(?P<news_id>\d+)/$', views.pizzashop_edit_news, name ='pizzashop-edit-news'),
 
+    # APIS
     url(r'^api/client/pizzashops/$', apis.client_get_pizzashops),
+    url(r'^api/client/pizzas/(?P<pizzashop_id>\d+)/$', apis.client_get_pizzas),
+    url(r'^api/client/sushis/(?P<pizzashop_id>\d+)/$', apis.client_get_sushis),
+
+    url(r'^api/client/news/(?P<pizzashop_id>\d+)/$', apis.client_get_news),
+
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
