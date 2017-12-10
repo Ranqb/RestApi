@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from pizzashopapp import views
+from pizzashopapp import views, apis
 
 from django.contrib.auth import views as auth_views
 
@@ -52,6 +52,6 @@ urlpatterns = [
     url(r'^pizzashop/news/add/$', views.pizzashop_add_news, name ='pizzashop-add-news'),
     url(r'^pizzashop/news/edit/(?P<news_id>\d+)/$', views.pizzashop_edit_news, name ='pizzashop-edit-news'),
 
-
+    url(r'^api/client/pizzashops/$', apis.client_get_pizzashops),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
