@@ -39,9 +39,14 @@ urlpatterns = [
     url(r'^pizzashop/sign-up', views.pizzashop_sign_up, name='pizzashop-sign-up'),
 
     url(r'^pizzashop/account/$', views.pizzashop_account, name='pizzashop-account'),
+
     url(r'^pizzashop/pizza/$', views.pizzashop_pizza, name='pizzashop-pizza'),
     url(r'^pizzashop/pizza/add/$', views.pizzashop_add_pizza, name ='pizzashop-add-pizza'),
-    url(r'^pizzashop/pizza/edit/(?P<pizza_id>\d+)/$', views.pizzashop_edit_pizza, name ='pizzashop-edit-pizza')
+    url(r'^pizzashop/pizza/edit/(?P<pizza_id>\d+)/$', views.pizzashop_edit_pizza, name ='pizzashop-edit-pizza'),
+
+    url(r'^pizzashop/sushi/$', views.pizzashop_sushi, name='pizzashop-sushi'),
+    url(r'^pizzashop/sushi/add/$', views.pizzashop_add_pizza, name ='pizzashop-add-pizza'),
+    url(r'^pizzashop/sushi/edit/(?P<sushi_id>\d+)/$', views.pizzashop_edit_pizza, name ='pizzashop-edit-pizza'),
 
 
 

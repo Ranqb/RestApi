@@ -13,15 +13,30 @@ class PizzaShop(models.Model):
     def __str__(self):
         return self.name
 
-def get_upload_path(instance, filename):
+def get_pizza_upload_path(instance, filename):
     return os.path.join("pizza_images",
       "user_%s" % instance.pizzashop.owner.username, filename)
+
+def get_sushi_upload_path(instance, filename):
+    return os.path.join("sushi_images",
+      "user_%s" % instance.pizzashop.owner.username, filename)
+
 
 class Pizza(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
     name = models.CharField(max_length=30)
     short_description = models.CharField(max_length=100)
-    image = models.ImageField(upload_to=get_upload_path, blank=False)
+    image = models.ImageField(upload_to=get_pizza_upload_path, blank=False)
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+class Sushi(models.Model):
+    pizzashop = models.ForeignKey(PizzaShop)
+    name = models.CharField(max_length=30)
+    short_description = models.CharField(max_length=100)
+    image = models.ImageField(upload_to=get_sushi_upload_path, blank=False)
     price = models.IntegerField(default=0)
 
     def __str__(self):
