@@ -9,7 +9,7 @@
   </div>
   <div class="panel-body">
     <div class="text-right">
-      <a href="{% url 'pizzashop-add-sushi' %}"class="btn btn-red">Добавить</a>
+      <a href="{% url 'pizzashop-add-china' %}"class="btn btn-red">Добавить</a>
       <br/>
       <br/>
     </div>
@@ -24,13 +24,13 @@
         </tr>
       </thead>
       <tbody>
-        {% for sushi in sushis %}
+        {% for china in chinas %}
           <tr>
-            <td scope="row">{{ sushi.id }}</td>
-            <td><a href="{% url 'pizzashop-edit-sushi' sushi.id %}">{{ sushi.name }}</a></td>
-            <td>{{ sushi.short_description }}</td>
-            <td>{{ sushi.price }}</td>
-            <td class="text-center"><img class="img-rounded" src="{{ MEDIA_URL }}{{ sushi.image }}" width = "150"></td>
+            <td scope="row">{{ china.id }}</td>
+            <td><a href="{% url 'pizzashop-edit-china' china.id %}">{{ china.name }}</a></td>
+            <td>{{ china.short_description }}</td>
+            <td>{{ china.price }}</td>
+            <td class="text-center"><img class="img-rounded" src="{{ MEDIA_URL }}{{ china.image }}" width = "150"></td>
           </tr>
         {% endfor %}
       </tbody>

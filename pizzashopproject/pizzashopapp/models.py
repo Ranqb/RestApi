@@ -13,6 +13,10 @@ class PizzaShop(models.Model):
     def __str__(self):
         return self.name
 
+def news_upload_path(instance, filename):
+    return os.path.join("news_images",
+      "user_%s" % instance.pizzashop.owner.username, filename)
+
 def get_pizza_upload_path(instance, filename):
     return os.path.join("pizza_images",
       "user_%s" % instance.pizzashop.owner.username, filename)
@@ -21,10 +25,26 @@ def get_sushi_upload_path(instance, filename):
     return os.path.join("sushi_images",
       "user_%s" % instance.pizzashop.owner.username, filename)
 
-def news_upload_path(instance, filename):
-    return os.path.join("news_images",
+def get_kavkaz_upload_path(instance, filename):
+    return os.path.join("kavkaz_images",
       "user_%s" % instance.pizzashop.owner.username, filename)
 
+def get_russia_upload_path(instance, filename):
+    return os.path.join("russia_images",
+      "user_%s" % instance.pizzashop.owner.username, filename)
+
+def get_china_upload_path(instance, filename):
+    return os.path.join("china_images",
+      "user_%s" % instance.pizzashop.owner.username, filename)
+
+class News(models.Model):
+    pizzashop = models.ForeignKey(PizzaShop)
+    name = models.CharField(max_length=30)
+    short_description = models.CharField(max_length=10000)
+    image = models.ImageField(upload_to=news_upload_path, blank=False)
+
+    def __str__(self):
+        return self.name
 
 class Pizza(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
@@ -46,11 +66,32 @@ class Sushi(models.Model):
     def __str__(self):
         return self.name
 
-class News(models.Model):
+class Kavkaz(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
     name = models.CharField(max_length=30)
-    short_description = models.CharField(max_length=10000)
-    image = models.ImageField(upload_to=news_upload_path, blank=False)
+    short_description = models.CharField(max_length=100)
+    image = models.ImageField(upload_to=get_kavkaz_upload_path, blank=False)
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+class Russia(models.Model):
+    pizzashop = models.ForeignKey(PizzaShop)
+    name = models.CharField(max_length=30)
+    short_description = models.CharField(max_length=100)
+    image = models.ImageField(upload_to=get_russia_upload_path, blank=False)
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.name
+
+class China(models.Model):
+    pizzashop = models.ForeignKey(PizzaShop)
+    name = models.CharField(max_length=30)
+    short_description = models.CharField(max_length=100)
+    image = models.ImageField(upload_to=get_china_upload_path, blank=False)
+    price = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name

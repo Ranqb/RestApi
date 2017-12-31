@@ -4,12 +4,12 @@
 <div class="panel">
   <div class="panel-heading bg-ruby">
     <h4 class="panel-title text-center text-white">
-      Японская кухня
+      Кавказская кухня
     </h4>
   </div>
   <div class="panel-body">
     <div class="text-right">
-      <a href="{% url 'pizzashop-add-sushi' %}"class="btn btn-red">Добавить</a>
+      <a href="{% url 'pizzashop-add-kavkaz' %}"class="btn btn-red">Добавить</a>
       <br/>
       <br/>
     </div>
@@ -24,13 +24,13 @@
         </tr>
       </thead>
       <tbody>
-        {% for sushi in sushis %}
+        {% for kavkaz in kavkazs %}
           <tr>
-            <td scope="row">{{ sushi.id }}</td>
-            <td><a href="{% url 'pizzashop-edit-sushi' sushi.id %}">{{ sushi.name }}</a></td>
-            <td>{{ sushi.short_description }}</td>
-            <td>{{ sushi.price }}</td>
-            <td class="text-center"><img class="img-rounded" src="{{ MEDIA_URL }}{{ sushi.image }}" width = "150"></td>
+            <td scope="row">{{ kavkaz.id }}</td>
+            <td><a href="{% url 'pizzashop-edit-kavkaz' kavkaz.id %}">{{ kavkaz.name }}</a></td>
+            <td>{{ kavkaz.short_description }}</td>
+            <td>{{ kavkaz.price }}</td>
+            <td class="text-center"><img class="img-rounded" src="{{ MEDIA_URL }}{{ kavkaz.image }}" width = "150"></td>
           </tr>
         {% endfor %}
       </tbody>

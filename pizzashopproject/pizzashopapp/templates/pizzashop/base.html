@@ -22,10 +22,15 @@
 
     <span class="text-uppercase">Меню</span>
     <a href="{% url 'pizzashop-pizza' %}"
-    class="list-group-item {% if request.path ==  pizzashop_pizza_url %} active {% endif %}">Пиццы</a>
-
+    class="list-group-item {% if request.path ==  pizzashop_pizza_url %} active {% endif %}">Итальянская кухня</a>
     <a href="{% url 'pizzashop-sushi' %}"
-    class="list-group-item {% if request.path ==  pizzashop_sushi_url %} active {% endif %}">Суши</a>
+    class="list-group-item {% if request.path ==  pizzashop_sushi_url %} active {% endif %}">Японская кухня</a>
+    <a href="{% url 'pizzashop-kavkaz' %}"
+    class="list-group-item {% if request.path ==  pizzashop_kavkaz_url %} active {% endif %}">Кавказская кухня</a>
+    <a href="{% url 'pizzashop-russia' %}"
+    class="list-group-item {% if request.path ==  pizzashop_russia_url %} active {% endif %}">Русская кухня</a>
+    <a href="{% url 'pizzashop-china' %}"
+    class="list-group-item {% if request.path ==  pizzashop_china_url %} active {% endif %}">Китайская кухня</a>
 
     <span class="text-uppercase">Профиль</span>
     <a href="{% url 'pizzashop-account' %}"
