@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 
-from .models import PizzaShop, Pizza, Sushi, News
-from pizzashopapp.serializers import PizzaShopSerializer, PizzaSerializer, SushiSerializer, NewsSerializer
+from .models import PizzaShop, Pizza, Sushi, Kavkaz, China, Russia, News
+from pizzashopapp.serializers import PizzaShopSerializer, PizzaSerializer, SushiSerializer, KavkazSerializer, ChinaSerializer, RussiaSerializer, NewsSerializer
 
 def client_get_pizzashops(request):
     pizzashops = PizzaShopSerializer(
@@ -38,11 +38,11 @@ def client_get_sushis(request, pizzashop_id):
 
 def client_get_kavkazs(request, pizzashop_id):
     kavkazs = KavkazSerializer(
-        Kavakz.objects.all().filter(pizzashop_id = pizzashop_id).order_by('-id'),
+        Kavkaz.objects.all().filter(pizzashop_id = pizzashop_id).order_by('-id'),
         many = True,
         context = {'request':request},
     ).data
-    return JsonResponse({'kavakzs':kavakzs})
+    return JsonResponse({'kavkazs':kavkazs})
 
 def client_get_russias(request, pizzashop_id):
     russias = RussiaSerializer(
