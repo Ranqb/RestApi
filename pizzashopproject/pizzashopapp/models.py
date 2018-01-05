@@ -49,7 +49,7 @@ class News(models.Model):
 class Pizza(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
     name = models.CharField(max_length=30)
-    short_description = models.CharField(max_length=100)
+    short_description = models.CharField(max_length=10000)
     image = models.ImageField(upload_to=get_pizza_upload_path, blank=False)
     price = models.IntegerField(default=0)
 
@@ -59,7 +59,7 @@ class Pizza(models.Model):
 class Sushi(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
     name = models.CharField(max_length=30)
-    short_description = models.CharField(max_length=100)
+    short_description = models.CharField(max_length=10000)
     image = models.ImageField(upload_to=get_sushi_upload_path, blank=False)
     price = models.IntegerField(default=0)
 
@@ -69,7 +69,7 @@ class Sushi(models.Model):
 class Kavkaz(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
     name = models.CharField(max_length=30)
-    short_description = models.CharField(max_length=100)
+    short_description = models.CharField(max_length=10000)
     image = models.ImageField(upload_to=get_kavkaz_upload_path, blank=False)
     price = models.IntegerField(default=0)
 
@@ -79,7 +79,7 @@ class Kavkaz(models.Model):
 class Russia(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
     name = models.CharField(max_length=30)
-    short_description = models.CharField(max_length=100)
+    short_description = models.CharField(max_length=10000)
     image = models.ImageField(upload_to=get_russia_upload_path, blank=False)
     price = models.IntegerField(default=0)
 
@@ -89,7 +89,7 @@ class Russia(models.Model):
 class China(models.Model):
     pizzashop = models.ForeignKey(PizzaShop)
     name = models.CharField(max_length=30)
-    short_description = models.CharField(max_length=100)
+    short_description = models.CharField(max_length=10000)
     image = models.ImageField(upload_to=get_china_upload_path, blank=False)
     price = models.IntegerField(default=0)
 
